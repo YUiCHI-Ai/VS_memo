@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--vscode-font-family);
+    font-size: var(--vscode-font-size);
+    color: var(--vscode-foreground);
+    background-color: var(--vscode-sideBar-background);
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--vscode-widget-border);
+    background-color: var(--vscode-sideBarSectionHeader-background);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header h3 {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--vscode-sideBarTitle-foreground);
+}
+
+.add-button {
+    background: transparent;
+    border: none;
+    color: var(--vscode-icon-foreground);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    transition: background-color 0.1s;
+}
+
+.add-button:hover {
+    background-color: var(--vscode-toolbar-hoverBackground);
+}
+
+.add-button:active {
+    background-color: var(--vscode-toolbar-activeBackground);
+}
+
+.memo-list {
+    padding: 8px;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+}
+
+.memo-container {
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid var(--vscode-widget-border);
+    border-radius: 4px;
+    position: relative;
+    min-height: 40px;
+    max-height: 50vh;
+    overflow: hidden;
+    background-color: var(--vscode-editor-background);
+    transition: background-color 0.1s;
+}
+
+.memo-container:hover {
+    background-color: var(--vscode-list-hoverBackground);
+}
+
+.memo-container:focus-within {
+    border-color: var(--vscode-focusBorder);
+    outline: none;
+}
+
+.memo-textarea {
+    width: calc(100% - 24px);
+    background: transparent;
+    border: none;
+    color: var(--vscode-editor-foreground);
+    font-family: var(--vscode-font-family);
+    font-size: var(--vscode-font-size);
+    resize: none;
+    outline: none;
+    min-height: 20px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.memo-textarea::placeholder {
+    color: var(--vscode-input-placeholderForeground);
+    opacity: 0.7;
+}
+
+.delete-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: transparent;
+    border: none;
+    color: var(--vscode-icon-foreground);
+    cursor: pointer;
+    padding: 2px;
+    opacity: 0;
+    transition: opacity 0.2s, color 0.1s;
+    border-radius: 3px;
+}
+
+.memo-container:hover .delete-button {
+    opacity: 1;
+}
+
+.delete-button:hover {
+    color: var(--vscode-errorForeground);
+    background-color: var(--vscode-toolbar-hoverBackground);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.empty-state p {
+    margin: 10px 0;
+}
+
+.codicon {
+    font-family: 'codicon';
+    font-size: 16px;
+}
+
+.codicon-add::before {
+    content: '\\ea60';
+}
+
+.codicon-close::before {
+    content: '\\ea76';
+}
+
+@font-face {
+    font-family: 'codicon';
+    src: url('vscode-resource://vscode-cdn.net/stable/insider/out/vs/base/browser/ui/codicons/codicon/codicon.ttf') format('truetype');
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--vscode-scrollbarSlider-background);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--vscode-scrollbarSlider-hoverBackground);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--vscode-scrollbarSlider-activeBackground);
+}

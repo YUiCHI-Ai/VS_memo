@@ -1,102 +1,108 @@
-# Prompt Memo (VSCode Extension)
+# Prompt Memo - VSCode Extension
 
-VSCode のサイドバーで、思いついたメモやスニペットを素早く記録・編集・削除できるシンプルなメモ拡張機能です。編集内容は自動保存され、VSCode を再起動してもセッション内の最後の状態が復元されます（ワークスペース内メモリ保存）。
+A simple and intuitive memo extension for Visual Studio Code that allows you to quickly jot down ideas and notes while coding.
 
-- 仕様書: [Prompt Memo VSCode拡張機能 仕様書.md](Prompt%20Memo%20VSCode拡張機能%20仕様書.md)
-- アイコン: [resources/icon.svg](resources/icon.svg)
-- エントリポイント: [src/extension.ts](src/extension.ts)
-- ビュープロバイダー: [src/memoViewProvider.ts](src/memoViewProvider.ts)
-- Webview: [src/webview/index.html](src/webview/index.html), [src/webview/style.css](src/webview/style.css), [src/webview/script.js](src/webview/script.js)
-- 型定義: [src/types.ts](src/types.ts)
-- マニフェスト: [package.json](package.json)
-- TypeScript 設定: [tsconfig.json](tsconfig.json)
+## Features
 
-## スクリーンショット（参考）
-![UI](UIイメージ.png)
+- **Quick Memo Creation**: Create new memos instantly with a single click
+- **Auto-Save**: All changes are automatically saved to memory
+- **Session Persistence**: Your memos are preserved across VSCode sessions
+- **Clean UI**: Minimal, distraction-free interface that follows your VSCode theme
+- **Keyboard Navigation**: Navigate between memos using Tab/Shift+Tab
 
-## 主な機能
-- メモ作成: ビュータイトルの [+] ボタンで新規メモ（下に追加）
-- メモ編集: クリックで即編集（フォーカス外れ時に自動保存）
-- メモ削除: 各メモ右上の × ボタンで即削除（確認なし）
-- 自動保存: テキスト変更は自動的にメモリへ保存
-- セッション復元: VSCode 再起動時に最後の状態を復元
-- テーマ追従: VSCode のダーク/ライトに準拠
-- レイアウト: メモは自動的に高さ調整（最小 1 行、最大 画面高さの 50%）
+## Installation
 
-## データ管理
-- 保存先: `ExtensionContext.workspaceState`（ワークスペース単位のメモリ保存）
-- 永続化: ファイルへの保存は行いません（仕様）
+### From Source
 
-## UI/UX
-- 配置: サイドバー（Explorer コンテナ内のビュー）
-  - ビュー ID: `promptMemo.memoView`
-  - ビュータイトルアクション（メニュー）で新規メモ作成
-- スタイル: VSCode テーマ変数使用（色/フォント等）
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Compile the extension:
+   ```bash
+   npm run compile
+   ```
+4. Press `F5` in VSCode to run the extension in a new Extension Development Host window
 
-## 導入（最短ワンコマンド）
+## Usage
 
-- このフォルダを VS Code で開いた状態で実行
-  ```
-  npm run setup -- --devhost
-  ```
-  - 依存インストール → TypeScript コンパイル → Extension Development Host（別ウィンドウ）を自動起動
-  - Explorer に「Prompt Memo」ビューが表示されます（見当たらない場合は「View: Open View」で「Prompt Memo」を検索）
+1. Click on the Prompt Memo icon in the Activity Bar (left sidebar)
+2. Click the `+` button to create a new memo
+3. Click inside a memo to start typing
+4. Click the `×` button on any memo to delete it
+5. All changes are automatically saved
 
-## よく使うタスク
+## Development
 
-- 開発ホストの起動（F5 相当）
-  ```
-  npm start
-  ```
-- VSIX を作成
-  ```
-  npm run package
-  ```
-- VSIX を作成してインストールまで実行
-  ```
-  npm run package:install
-  ```
+### Prerequisites
 
-## 使い方
+- Node.js (v16 or higher)
+- npm (v7 or higher)
+- Visual Studio Code
 
-- ビュータイトルの [+] で新規メモ
-- メモをクリックして編集（フォーカス外れで自動保存）
-- 右上の × ボタンで削除
+### Setup
 
-## コマンド/メニュー
-- コマンド: `promptMemo.createMemo`（タイトル: Create New Memo）
-- ビュータイトルメニュー（`view/title`）: ビューが `promptMemo.memoView` のときに [+] を表示
-- 貢献ポイントは [package.json](package.json) の `contributes.views` / `contributes.commands` / `contributes.menus` を参照
+```bash
+# Install dependencies
+npm install
 
-## ファイル構成
+# Compile TypeScript
+npm run compile
+
+# Watch for changes
+npm run watch
+
+# Run tests
+npm test
+```
+
+### Project Structure
+
 ```
 prompt-memo/
 ├── src/
-│   ├── extension.ts          # エントリーポイント
-│   ├── memoViewProvider.ts   # WebviewViewProvider + 状態管理 + メッセージ処理
-│   ├── types.ts              # 型定義
-│   └── webview/
-│       ├── index.html        # Webview テンプレート（CSP/URI を差し込み）
-│       ├── style.css         # スタイル（テーマ変数に準拠）
-│       └── script.js         # Webview 側ロジック（描画/自動リサイズ/保存/削除）
-├── resources/
-│   └── icon.svg              # ビューアイコン
-├── package.json              # 拡張機能マニフェスト
-├── tsconfig.json             # TypeScript 設定
-└── README.md                 # この文書
+│   ├── extension.ts          # Extension entry point
+│   ├── providers/            # View providers
+│   ├── models/               # Data models
+│   ├── types/                # TypeScript type definitions
+│   ├── utils/                # Utility functions
+│   └── webview/              # Webview assets (HTML, CSS, JS)
+├── resources/                # Icons and other resources
+├── out/                      # Compiled JavaScript (generated)
+├── package.json              # Extension manifest
+├── tsconfig.json             # TypeScript configuration
+└── README.md                 # This file
 ```
 
-## 設計メモ
-- Webview は `index.html` をベースに、`style.css`/`script.js` を CSP/nonce 付きで読み込み
-- VSCode との通信は `window.postMessage` / `onDidReceiveMessage` で実装
-- メモの高さは textarea の `input/focus` タイミングで自動調整（50vh 上限）
+## Configuration
 
-## 既知の制約
-- ファイル永続化なし（仕様）
-- キーボードショートカットなし（仕様）
-- 検索/フィルタリングなし（将来拡張）
-- ワークスペース間共有なし（将来拡張）
-- 大量メモ時のパフォーマンスは Webview 仕様に依存
+Currently, Prompt Memo works out of the box with no configuration required. Future versions may include:
 
-## ライセンス
-MIT# VS_memo
+- Maximum number of memos
+- Maximum memo length
+- Auto-save delay customization
+- Export/import functionality
+
+## Known Issues
+
+- Memos are stored in memory and workspace state only (no file persistence)
+- No search or filtering capabilities yet
+- Limited to plain text (no markdown support)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This extension is provided as-is for educational and development purposes.
+
+## Changelog
+
+### Version 1.0.0
+- Initial release
+- Basic memo creation, editing, and deletion
+- Auto-save functionality
+- Session persistence
+- VSCode theme integration

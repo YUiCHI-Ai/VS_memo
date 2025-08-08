@@ -260,22 +260,27 @@ prompt-memo/
     "description": "Simple temporary memo extension for VSCode",
     "version": "1.0.0",
     "engines": {
-        "vscode": "^1.60.0"
+        "vscode": "^1.74.0"
     },
     "categories": ["Other"],
-    "activationEvents": [
-        "onView:promptMemo.memoView"
-    ],
+    "activationEvents": [],
     "main": "./out/extension.js",
     "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "prompt-memo",
+                    "title": "Prompt Memo",
+                    "icon": "resources/icon.svg"
+                }
+            ]
+        },
         "views": {
-            "explorer": [
+            "prompt-memo": [
                 {
                     "type": "webview",
                     "id": "promptMemo.memoView",
-                    "name": "Prompt Memo",
-                    "icon": "resources/icon.svg",
-                    "contextualTitle": "Prompt Memo"
+                    "name": "Prompt Memo"
                 }
             ]
         },
@@ -284,6 +289,11 @@ prompt-memo/
                 "command": "promptMemo.createMemo",
                 "title": "Create New Memo",
                 "icon": "$(add)"
+            },
+            {
+                "command": "promptMemo.deleteMemo",
+                "title": "Delete Memo",
+                "icon": "$(close)"
             }
         ],
         "menus": {
@@ -295,6 +305,22 @@ prompt-memo/
                 }
             ]
         }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.74.0",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^5.45.0",
+        "@typescript-eslint/parser": "^5.45.0",
+        "eslint": "^8.28.0",
+        "typescript": "^4.9.3"
     }
 }
 ```

@@ -1,73 +1,73 @@
 {
-  "name": "prompt-memo",
-  "displayName": "Prompt Memo",
-  "description": "Simple temporary memo extension for VSCode",
-  "version": "0.1.1",
-  "publisher": "local",
-  "engines": {
-    "vscode": "^1.60.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onView:promptMemo.memoView"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "promptMemo",
-          "title": "Prompt Memo",
-          "icon": "resources/icon.svg"
-        }
-      ]
+    "name": "prompt-memo",
+    "displayName": "Prompt Memo",
+    "description": "Simple temporary memo extension for VSCode",
+    "version": "1.0.0",
+    "publisher": "your-publisher-name",
+    "engines": {
+        "vscode": "^1.90.0"
     },
-    "views": {
-      "promptMemo": [
-        {
-          "type": "webview",
-          "id": "promptMemo.memoView",
-          "name": "Prompt Memo",
-          "icon": "resources/icon.svg",
-          "contextualTitle": "Prompt Memo"
+    "categories": ["Other"],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "prompt-memo",
+                    "title": "Prompt Memo",
+                    "icon": "resources/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "prompt-memo": [
+                {
+                    "type": "webview",
+                    "id": "promptMemo.memoView",
+                    "name": "Prompt Memo"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "promptMemo.createMemo",
+                "title": "Create New Memo",
+                "icon": "$(add)"
+            },
+            {
+                "command": "promptMemo.deleteMemo",
+                "title": "Delete Memo",
+                "icon": "$(close)"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "promptMemo.createMemo",
+                    "when": "view == promptMemo.memoView",
+                    "group": "navigation"
+                }
+            ]
         }
-      ]
     },
-    "commands": [
-      {
-        "command": "promptMemo.createMemo",
-        "title": "Create New Memo",
-        "icon": "$(add)"
-      }
-    ],
-    "menus": {
-      "view/title": [
-        {
-          "command": "promptMemo.createMemo",
-          "when": "view == promptMemo.memoView",
-          "group": "navigation"
-        }
-      ]
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.90.0",
+        "@types/node": "20.x",
+        "@typescript-eslint/eslint-plugin": "^7.0.0",
+        "@typescript-eslint/parser": "^7.0.0",
+        "eslint": "^8.56.0",
+        "typescript": "^5.4.0",
+        "@vscode/test-electron": "^2.3.0",
+        "glob": "^10.3.0",
+        "mocha": "^10.2.0"
     }
-  },
-  "scripts": {
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "postinstall": "npm run compile",
-    "vscode:prepublish": "npm run compile",
-    "start": "node ./scripts/devhost.mjs",
-    "devhost": "node ./scripts/devhost.mjs",
-    "package": "npx --yes @vscode/vsce package --baseContentUrl https://example.com --baseImagesUrl https://example.com",
-    "install:vsix": "node ./scripts/install-vsix.mjs",
-    "package:install": "npm run package && npm run install:vsix",
-    "setup": "node ./scripts/setup.mjs"
-  },
-  "devDependencies": {
-    "@types/node": "^16.18.0",
-    "@types/vscode": "^1.60.0",
-    "typescript": "^5.4.0",
-    "@vscode/vsce": "^3.0.0"
-  }
 }
