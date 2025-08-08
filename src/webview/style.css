@@ -1,0 +1,119 @@
+:root {
+  --fg: var(--vscode-editor-foreground);
+  --bg: var(--vscode-editor-background);
+  --border: var(--vscode-widget-border);
+  --accent: var(--vscode-button-foreground);
+  --icon: var(--vscode-icon-foreground);
+  --focus: var(--vscode-focusBorder);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  color: var(--fg);
+  background: transparent;
+  font-family: var(--vscode-font-family), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 1;
+}
+
+.title {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--fg);
+}
+
+.memo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  overflow: auto;
+  max-height: calc(100vh - 36px);
+}
+
+.memo-container {
+  position: relative;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(127,127,127,0.04);
+  min-height: 32px; /* 最小: 1行分 */
+  max-height: 50vh; /* 最大: 画面の半分まで */
+  overflow: auto;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.memo-container:focus-within {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 1px var(--focus) inset;
+  background: rgba(127,127,127,0.07);
+}
+
+.memo-textarea {
+  width: 100%;
+  min-height: 24px;
+  max-height: calc(50vh - 24px);
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  font: inherit;
+  line-height: 1.5;
+  resize: none; /* 手動リサイズ不可（自動拡張） */
+  outline: none;
+  overflow: hidden; /* 自動拡張でスクロール非表示 */
+  padding-right: 24px; /* 右上の×ボタン分の余白 */
+  white-space: pre-wrap;
+}
+
+.delete-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  color: var(--icon);
+  border-radius: 4px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.delete-button:hover {
+  background: rgba(127,127,127,0.12);
+}
+
+.delete-button:active {
+  background: rgba(127,127,127,0.18);
+}
+
+.delete-button:focus-visible {
+  outline: 1px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.delete-button svg {
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  fill: currentColor;
+}
