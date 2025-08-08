@@ -173,6 +173,25 @@ export class MemoViewProvider implements vscode.WebviewViewProvider {
     box-sizing: border-box;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+}
+
+*:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
 body {
     font-family: var(--vscode-font-family);
     font-size: var(--vscode-font-size);
@@ -248,23 +267,47 @@ body {
 }
 
 .memo-container:focus-within {
-    border-color: var(--vscode-focusBorder);
-    outline: none;
+    outline: none !important;
+    border-color: var(--vscode-widget-border) !important;
+}
+
+.memo-container.focused {
+    outline: none !important;
+    border-color: var(--vscode-widget-border) !important;
+}
+
+.memo-container.focused .memo-textarea {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .memo-textarea {
     width: calc(100% - 24px);
     background: transparent;
-    border: none;
+    border: none !important;
     color: var(--vscode-editor-foreground);
     font-family: var(--vscode-font-family);
     font-size: var(--vscode-font-size);
     resize: none;
-    outline: none;
+    outline: none !important;
     min-height: 20px;
     line-height: 1.5;
     word-wrap: break-word;
     white-space: pre-wrap;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.memo-textarea:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    -webkit-focus-ring-color: transparent !important;
+    -webkit-appearance: none;
 }
 
 .memo-textarea::placeholder {
@@ -470,6 +513,11 @@ body {
             textarea.value = memo.content;
             textarea.placeholder = 'Enter your memo...';
             textarea.setAttribute('aria-label', 'Memo content');
+            // インラインスタイルで緑の枠を強制的に無効化
+            textarea.style.outline = 'none';
+            textarea.style.border = 'none';
+            textarea.style.boxShadow = 'none';
+            textarea.style.WebkitAppearance = 'none';
             
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'delete-button';
@@ -487,6 +535,12 @@ body {
             
             textarea.addEventListener('focus', () => {
                 memoDiv.classList.add('focused');
+                // フォーカス時にもインラインスタイルを再適用
+                textarea.style.outline = 'none';
+                textarea.style.border = 'none';
+                textarea.style.boxShadow = 'none';
+                textarea.style.WebkitAppearance = 'none';
+                textarea.style.WebkitFocusRingColor = 'transparent';
             });
             
             textarea.addEventListener('blur', () => {
