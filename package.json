@@ -4,6 +4,7 @@
     "description": "Simple temporary memo extension for VSCode",
     "version": "1.0.0",
     "publisher": "your-publisher-name",
+    "icon": "resources/icon.svg",
     "engines": {
         "vscode": "^1.90.0"
     },

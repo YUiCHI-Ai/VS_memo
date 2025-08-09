@@ -1,6 +1,24 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7 7H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7 17H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- メモ帳の背景 -->
+  <rect x="16" y="8" width="96" height="112" rx="8" fill="#FFF9E6" stroke="#FFB366" stroke-width="3"/>
+  
+  <!-- リング綴じ部分 -->
+  <circle cx="32" cy="24" r="4" fill="none" stroke="#666666" stroke-width="2"/>
+  <circle cx="48" cy="24" r="4" fill="none" stroke="#666666" stroke-width="2"/>
+  <circle cx="64" cy="24" r="4" fill="none" stroke="#666666" stroke-width="2"/>
+  <circle cx="80" cy="24" r="4" fill="none" stroke="#666666" stroke-width="2"/>
+  <circle cx="96" cy="24" r="4" fill="none" stroke="#666666" stroke-width="2"/>
+  
+  <!-- テキストライン -->
+  <line x1="28" y1="44" x2="100" y2="44" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round"/>
+  <line x1="28" y1="60" x2="100" y2="60" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round"/>
+  <line x1="28" y1="76" x2="100" y2="76" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round"/>
+  <line x1="28" y1="92" x2="80" y2="92" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- ペンアイコン -->
+  <g transform="translate(88, 96)">
+    <path d="M2 18L7 13L19 1C20 0 22 0 23 1L27 5C28 6 28 8 27 9L15 21L10 23L2 18Z" fill="#FF6B6B" stroke="#CC4444" stroke-width="2"/>
+    <path d="M17 3L25 11" stroke="#CC4444" stroke-width="2" stroke-linecap="round"/>
+    <path d="M2 18L7 13" stroke="#CC4444" stroke-width="2" stroke-linecap="round"/>
+  </g>
 </svg>

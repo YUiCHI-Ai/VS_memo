@@ -13,15 +13,7 @@
                 "kind": "build",
                 "isDefault": true
             }
-        },
-        {
-            "type": "npm",
-            "script": "compile",
-            "problemMatcher": "$tsc",
-            "presentation": {
-                "reveal": "never"
-            },
-            "group": "build"
         }
     ]
 }
+EOF < /dev/null
